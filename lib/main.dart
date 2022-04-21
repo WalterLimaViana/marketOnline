@@ -5,6 +5,7 @@ import 'dart:ui';
 
 void main() {
   runApp(MaterialApp(
+    theme: ThemeData(fontFamily: 'Raleway'),
     debugShowCheckedModeBanner: false,
     home: SplashPage(duration: 3, goToPage: WelcomePage()),
   ));

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/main.dart';
+import 'package:marketonline/pages/category_list_page.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -69,7 +70,13 @@ class WelcomePage extends StatelessWidget {
                         splashColor: AppColors.SECUNDARY_COLOR.withOpacity(0.2),
                         highlightColor:
                             AppColors.SECUNDARY_COLOR.withOpacity(0.2),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CategoryListPage(),
+                              ));
+                        },
                         child: Container(
                           padding: EdgeInsets.all(20),
                           child: Text('Fazer Login',
