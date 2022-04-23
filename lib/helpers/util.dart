@@ -2,6 +2,8 @@ import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/models/category.dart';
 
+import '../models/subcategory.dart';
+
 class Utils {
   static List<Category> getMockedCategories() {
     return [
@@ -9,61 +11,82 @@ class Utils {
           color: AppColors.MEATS,
           name: "Açougue",
           imgName: 'acougue',
-          icon: IconFontHelper.FISH,
-          subCategories: []),
+          icon: IconFontHelper.ACOUGUE,
+          subCategories: [
+            SubCategory(
+                color: AppColors.SECUNDARY_COLOR,
+                name: "Bovina",
+                imgName: 'acougue',
+                icon: IconFontHelper.VACA),
+            SubCategory(
+                color: AppColors.SECUNDARY_COLOR,
+                name: "Suína",
+                imgName: 'acougue',
+                icon: IconFontHelper.PORCO),
+            SubCategory(
+                color: AppColors.SECUNDARY_COLOR,
+                name: "Galinha",
+                imgName: 'acougue',
+                icon: IconFontHelper.GALINHA),
+            SubCategory(
+                color: AppColors.SECUNDARY_COLOR,
+                name: "Peixes",
+                imgName: 'acougue',
+                icon: IconFontHelper.FISH),
+          ]),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.YELLOW,
           name: "Padaria",
           imgName: 'padaria',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.PADARIA,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.BROWN,
           name: "Grãos",
           imgName: 'graos',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.BEANS,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.SEEDS,
           name: "Enlatados",
           imgName: 'enlatados',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.ENLATADOS,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.GREEN,
           name: "Hortifruti",
           imgName: 'hortifruti',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.FRUTAS,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.PASTRIES,
           name: "Leite e Derivados",
           imgName: 'leite',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.MILK,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.DARKER_GREEN,
           name: "Biscoitos e Bolachas",
           imgName: 'biscuit',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.BISCOITOS,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.LIGHTER_GREEN,
           name: "Bebidas",
           imgName: 'bebidas',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.DRINKS,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.PINK,
           name: "Produtos de Higiene",
           imgName: 'higine-bucal',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.DENTES,
           subCategories: []),
       Category(
-          color: AppColors.MEATS,
+          color: AppColors.YELLOW,
           name: "Produtos de Limpeza",
           imgName: 'produtos-limpeza',
-          icon: IconFontHelper.FISH,
+          icon: IconFontHelper.LIMPEZA,
           subCategories: []),
     ];
   }

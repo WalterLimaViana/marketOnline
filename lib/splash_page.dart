@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
         child: Center(
             child: IconFont(
           color: Colors.white,
-          iconName: 'o',
+          iconName: 's',
           size: 100,
         )),
       ),

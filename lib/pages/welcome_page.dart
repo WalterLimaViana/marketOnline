@@ -31,7 +31,7 @@ class WelcomePage extends StatelessWidget {
                       color: AppColors.SECUNDARY_COLOR,
                       alignment: Alignment.center,
                       child: IconFont(
-                          iconName: IconFontHelper.FISH,
+                          iconName: IconFontHelper.LOGO,
                           color: Colors.white,
                           size: 100),
                     ),

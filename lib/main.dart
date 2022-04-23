@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:marketonline/pages/category_list_page.dart';
+import 'package:marketonline/helpers/util.dart';
+import 'package:marketonline/pages/selected_category_page.dart';
 import 'package:marketonline/pages/welcome_page.dart';
 import 'package:marketonline/splash_page.dart';
 import 'dart:ui';
 
 void main() {
   runApp(MaterialApp(
-      theme: ThemeData(fontFamily: 'Raleway'),
-      debugShowCheckedModeBanner: false,
-      home:
-          CategoryListPage() //SplashPage(duration: 3, goToPage: WelcomePage()),
-      ));
+    theme: ThemeData(fontFamily: 'Raleway'),
+    debugShowCheckedModeBanner: false,
+    home: SplashPage(duration: 3, goToPage: WelcomePage()),
+  ));
 }
 
 class IconFont extends StatelessWidget {

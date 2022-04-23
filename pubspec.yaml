@@ -90,8 +90,8 @@ flutter:
     - family: marketonline
       fonts:
         - asset: fonts/marketonline.ttf
-    - family: 
-      fonts:
+    - family: Raleway 
+      fonts: 
         - asset: fonts/Raleway-Bold.ttf
         - asset: fonts/Raleway-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
