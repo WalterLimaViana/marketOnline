@@ -4,6 +4,7 @@ import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/helpers/util.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/models/category.dart';
+import 'package:marketonline/pages/selected_category_page.dart';
 import 'package:marketonline/widgets/categorybottombar.dart';
 import 'package:marketonline/widgets/categorycard.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
@@ -51,9 +52,18 @@ class CategoryListPage extends StatelessWidget {
               ),
               Expanded(
                   child: ListView.builder(
+                      padding: EdgeInsets.only(bottom: 120),
                       itemCount: categories.length,
                       itemBuilder: (BuildContext ctx, int index) {
-                        return CategoryCard(category: categories[index]);
+                        return CategoryCard(
+                            category: categories[index],
+                            onCardClick: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          SelectedCategoryPage()));
+                            });
                       }))
             ],
           ),
