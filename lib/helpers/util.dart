@@ -21,17 +21,17 @@ class Utils {
             SubCategory(
                 color: AppColors.SECUNDARY_COLOR,
                 name: "Suína",
-                imgName: 'acougue',
+                imgName: 'liver',
                 icon: IconFontHelper.PORCO),
             SubCategory(
                 color: AppColors.SECUNDARY_COLOR,
                 name: "Galinha",
-                imgName: 'acougue',
+                imgName: 'chicken',
                 icon: IconFontHelper.GALINHA),
             SubCategory(
                 color: AppColors.SECUNDARY_COLOR,
                 name: "Peixes",
-                imgName: 'acougue',
+                imgName: 'fish',
                 icon: IconFontHelper.FISH),
           ]),
       Category(

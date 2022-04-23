@@ -10,7 +10,7 @@ class AppColors {
   static const Color SEEDS = Color(0xFFC05D28);
   static const Color PASTRIES = Color(0xFF5D28C0);
   static const Color SPICES = Color(0xFF1BB1DE);
-  static const Color YELLOW = Color.fromARGB(255, 243, 231, 70);
+  static const Color YELLOW = Color.fromARGB(255, 221, 208, 22);
   static const Color GREEN = Color.fromARGB(255, 67, 233, 75);
   static const Color PINK = Color.fromARGB(255, 240, 94, 167);
   static const Color BROWN = Color.fromARGB(255, 68, 45, 44);

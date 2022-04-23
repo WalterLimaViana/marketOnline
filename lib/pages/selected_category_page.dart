@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:marketonline/models/category.dart';
+import 'package:marketonline/pages/details_page.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
 
@@ -39,7 +40,12 @@ class SelectedCategoryPage extends StatelessWidget {
                 children: List.generate(
                     this.selectedCategory!.subCategories!.length, (index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailsPage()));
+                    },
                     child: Container(
                         child: Column(
                       children: [
