@@ -3,7 +3,7 @@ import 'dart:ui';
 
 class AppColors {
   static const Color MAIN_COLOR = Color(0xFF80C038);
-  static const Color SECUNDARY_COLOR = Color.fromARGB(255, 248, 52, 52);
+  static const Color SECUNDARY_COLOR = Color.fromARGB(255, 61, 187, 245);
   static const Color MEATS = Color(0xFFC02828);
   static const Color FRUITS = Color(0xFFC028BA);
   static const Color VEGS = Color(0xFF28C080);

@@ -1,6 +1,8 @@
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/models/category.dart';
+import 'package:marketonline/models/categorypart.dart';
+import 'dart:ui';
 
 import '../models/subcategory.dart';
 
@@ -14,25 +16,47 @@ class Utils {
           icon: IconFontHelper.ACOUGUE,
           subCategories: [
             SubCategory(
-                color: AppColors.SECUNDARY_COLOR,
+                color: AppColors.MEATS,
                 name: "Bovina",
                 imgName: 'acougue',
-                icon: IconFontHelper.VACA),
+                icon: IconFontHelper.ACOUGUE,
+                parts: [
+                  CategoryPart(
+                      name: 'Picanha', imgName: 'picanha', isSelected: false),
+                  CategoryPart(
+                      name: 'Picanha', imgName: 'picanha', isSelected: false),
+                  CategoryPart(
+                      name: 'Picanha', imgName: 'picanha', isSelected: false),
+                  CategoryPart(
+                      name: 'Picanha', imgName: 'picanha', isSelected: false),
+                ]),
             SubCategory(
-                color: AppColors.SECUNDARY_COLOR,
+                color: AppColors.MEATS,
                 name: "Suína",
                 imgName: 'liver',
-                icon: IconFontHelper.PORCO),
+                icon: IconFontHelper.PORCO,
+                parts: [
+                  CategoryPart(
+                      name: 'Lombo', imgName: 'acougue', isSelected: false),
+                ]),
             SubCategory(
-                color: AppColors.SECUNDARY_COLOR,
+                color: AppColors.YELLOW,
                 name: "Galinha",
                 imgName: 'chicken',
-                icon: IconFontHelper.GALINHA),
+                icon: IconFontHelper.GALINHA,
+                parts: [
+                  CategoryPart(
+                      name: 'Lombo', imgName: 'acougue', isSelected: false),
+                ]),
             SubCategory(
-                color: AppColors.SECUNDARY_COLOR,
+                color: AppColors.GREEN,
                 name: "Peixes",
                 imgName: 'fish',
-                icon: IconFontHelper.FISH),
+                icon: IconFontHelper.FISH,
+                parts: [
+                  CategoryPart(
+                      name: 'Lombo', imgName: 'acougue', isSelected: false),
+                ]),
           ]),
       Category(
           color: AppColors.YELLOW,

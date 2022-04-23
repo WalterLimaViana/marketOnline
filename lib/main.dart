@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/util.dart';
+import 'package:marketonline/pages/details_page.dart';
 import 'package:marketonline/pages/selected_category_page.dart';
 import 'package:marketonline/pages/welcome_page.dart';
 import 'package:marketonline/splash_page.dart';
@@ -9,7 +10,11 @@ void main() {
   runApp(MaterialApp(
     theme: ThemeData(fontFamily: 'Raleway'),
     debugShowCheckedModeBanner: false,
-    home: SplashPage(duration: 3, goToPage: WelcomePage()),
+    home:
+        // DetailsPage(
+        //   subCategory: Utils.getMockedCategories()[0].subCategories![0],
+        // )
+        SplashPage(duration: 3, goToPage: WelcomePage()),
   ));
 }
 

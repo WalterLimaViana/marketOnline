@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:marketonline/models/category.dart';
+import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/pages/details_page.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
@@ -44,7 +45,10 @@ class SelectedCategoryPage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DetailsPage()));
+                              builder: (context) => DetailsPage(
+                                    subCategory: selectedCategory
+                                        ?.subCategories![index] as SubCategory,
+                                  )));
                     },
                     child: Container(
                         child: Column(
