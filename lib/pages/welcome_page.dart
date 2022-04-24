@@ -3,6 +3,7 @@ import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/pages/category_list_page.dart';
+import 'package:marketonline/widgets/themebutton.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
@@ -49,51 +50,26 @@ class WelcomePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.black, fontSize: 18)),
                 SizedBox(height: 50),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: FlatButton(
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      color: AppColors.SECUNDARY_COLOR,
-                      padding: EdgeInsets.all(25),
-                      child: Text('Comprar Agora',
-                          style: TextStyle(color: Colors.white, fontSize: 16))),
+                ThemeButton(
+                  label: 'Comprar Agora',
+                  highlight: AppColors.HIGHTLIGHT_DEFAULT,
+                  color: AppColors.SECUNDARY_COLOR,
+                  onClick: () {},
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: AppColors.SECUNDARY_COLOR.withOpacity(0.2),
-                        highlightColor:
-                            AppColors.SECUNDARY_COLOR.withOpacity(0.2),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryListPage(),
-                              ));
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          child: Text('Fazer Login',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: AppColors.SECUNDARY_COLOR,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.transparent,
-                              border: Border.all(
-                                  color: AppColors.SECUNDARY_COLOR, width: 4)),
-                        ),
-                      ),
-                    ),
-                  ),
+                ThemeButton(
+                  label: 'Fazer Login',
+                  labelColor: AppColors.SECUNDARY_COLOR,
+                  color: Colors.transparent,
+                  highlight: AppColors.SECUNDARY_COLOR.withOpacity(0.5),
+                  borderColor: AppColors.SECUNDARY_COLOR,
+                  borderWidth: 4,
+                  onClick: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategoryListPage(),
+                        ));
+                  },
                 )
               ],
             ),
