@@ -21,7 +21,7 @@ class MainAppBarState extends State<MainAppBar> {
     return AppBar(
       title: Center(
         child: IconFont(
-          iconName: IconFontHelper.LOGO,
+          iconName: IconFontHelper.CESTA,
           color: widget.themeColor,
           size: 40,
         ),

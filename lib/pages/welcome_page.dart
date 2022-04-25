@@ -34,9 +34,9 @@ class WelcomePage extends StatelessWidget {
                       color: AppColors.SECUNDARY_COLOR,
                       alignment: Alignment.center,
                       child: IconFont(
-                          iconName: IconFontHelper.LOGO,
+                          iconName: IconFontHelper.LOGOMAIN,
                           color: Colors.white,
-                          size: 100),
+                          size: 140),
                     ),
                   ),
                 ),
@@ -59,7 +59,7 @@ class WelcomePage extends StatelessWidget {
                   onClick: () {},
                 ),
                 ThemeButton(
-                  label: 'Hacer Onboarding',
+                  label: 'Introdução',
                   highlight: Colors.blue[900],
                   color: AppColors.DARK_BLUE,
                   onClick: () {

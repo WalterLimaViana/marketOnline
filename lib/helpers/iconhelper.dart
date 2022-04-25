@@ -21,4 +21,5 @@ class IconFontHelper {
   static const String DRINKS = 't';
   static const String BEANS = 'u';
   static const String MILK = 'v';
+  static const String LOGOMAIN = 'w';
 }

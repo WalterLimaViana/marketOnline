@@ -71,10 +71,11 @@ class _OnboardingpageState extends State<Onboardingpage> {
                                   alignment: Alignment.topRight,
                                   child: IconFont(
                                     color: AppColors.SECUNDARY_COLOR,
-                                    iconName: IconFontHelper.LOGO,
+                                    iconName: IconFontHelper.CESTA,
                                     size: 40,
                                   ),
                                 ),
+                                SizedBox(height: 10),
                                 Image.asset(
                                     'assets/imgs/${_content[index].img}.png'),
                                 SizedBox(height: 40),
