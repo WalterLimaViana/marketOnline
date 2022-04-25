@@ -2,11 +2,28 @@ import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/models/category.dart';
 import 'package:marketonline/models/categorypart.dart';
+import 'package:marketonline/models/onboardingcontent.dart';
 import 'dart:ui';
 
 import '../models/subcategory.dart';
 
 class Utils {
+  static List<Onboardingcontent> getOnboarding() {
+    return [
+      Onboardingcontent(
+          message: 'Escolha os produtos \nque deseja e adicione ao carrinho',
+          img: 'compras-online'),
+      Onboardingcontent(
+          message:
+              'Faça o pagamento\ndiretamente pelo aplicativo,\ncrédito ou débito',
+          img: 'pagamento-online'),
+      Onboardingcontent(
+          message:
+              'Além da comodidade de\nacompanhar a localização da sua entrega no app',
+          img: 'entrega'),
+    ];
+  }
+
   static List<Category> getMockedCategories() {
     return [
       Category(

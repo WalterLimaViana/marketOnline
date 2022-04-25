@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
+import 'package:marketonline/helpers/util.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/pages/category_list_page.dart';
+import 'package:marketonline/pages/onboardingpage.dart';
 import 'package:marketonline/widgets/themebutton.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -55,6 +57,18 @@ class WelcomePage extends StatelessWidget {
                   highlight: AppColors.HIGHTLIGHT_DEFAULT,
                   color: AppColors.SECUNDARY_COLOR,
                   onClick: () {},
+                ),
+                ThemeButton(
+                  label: 'Hacer Onboarding',
+                  highlight: Colors.blue[900],
+                  color: AppColors.DARK_BLUE,
+                  onClick: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Onboardingpage(),
+                        ));
+                  },
                 ),
                 ThemeButton(
                   label: 'Fazer Login',

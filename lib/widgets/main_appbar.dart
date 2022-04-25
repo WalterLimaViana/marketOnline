@@ -31,7 +31,7 @@ class MainAppBarState extends State<MainAppBar> {
       iconTheme: IconThemeData(color: widget.themeColor),
       actions: [
         Container(
-            margin: EdgeInsets.only(right: 10),
+            margin: EdgeInsets.only(right: 5),
             padding: EdgeInsets.all(10),
             child: ClipOval(
                 child: Image.asset('assets/imgs/shopping-venture.jpg')))
