@@ -4,12 +4,19 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:marketonline/helpers/appcolors.dart';
+import 'package:marketonline/helpers/iconhelper.dart';
+import 'package:marketonline/widgets/mapuserbadge.dart';
+import 'package:marketonline/widgets/categoryicon.dart';
+import 'package:marketonline/widgets/main_appbar.dart';
+import 'package:marketonline/widgets/mapbottompill.dart';
 
 const LatLng SOURCE_LOCATION = LatLng(42.7477863, -71.1699932);
 const LatLng DEST_LOCATION = LatLng(42.744421, -71.1698939);
 const double CAMERA_ZOOM = 16;
 const double CAMERA_TILT = 80;
 const double CAMERA_BEARING = 30;
+const double PIN_VISIBLE_POSITION = 20;
+const double PIN_INVISIBLE_POSITION = -220;
 
 class MapPage extends StatefulWidget {
   @override
@@ -18,12 +25,14 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
-  BitmapDescriptor? sourceIcon;
-  BitmapDescriptor? destinationIcon;
+  late BitmapDescriptor sourceIcon;
+  late BitmapDescriptor destinationIcon;
   Set<Marker> _markers = Set<Marker>();
+  double pinPillPosition = PIN_VISIBLE_POSITION;
 
-  LatLng? currentLocation;
-  LatLng? destinationLocation;
+  late LatLng currentLocation;
+  late LatLng destinationLocation;
+  bool? userBadgeSelected = false;
 
   @override
   void initState() {
@@ -60,73 +69,67 @@ class _MapPageState extends State<MapPage> {
         bearing: CAMERA_BEARING,
         target: SOURCE_LOCATION);
     return Scaffold(
-      body: Stack(children: [
-        Positioned.fill(
-          child: GoogleMap(
-            myLocationEnabled: true,
-            compassEnabled: false,
-            tiltGesturesEnabled: false,
-            markers: _markers,
-            mapType: MapType.normal,
-            initialCameraPosition: initialCameraPosition,
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
+        body: Stack(children: [
+      Positioned.fill(
+        child: GoogleMap(
+          myLocationEnabled: true,
+          compassEnabled: false,
+          tiltGesturesEnabled: false,
+          markers: _markers,
+          mapType: MapType.normal,
+          initialCameraPosition: initialCameraPosition,
+          onTap: (LatLng loc) {
+            setState(() {
+              this.pinPillPosition = PIN_INVISIBLE_POSITION;
+              // this.userBadgeSelected = false;
+            });
+          },
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
 
-              showPinsOnMap();
-            },
-          ),
+            showPinsOnMap();
+          },
         ),
-        Positioned(
-            top: 100,
-            left: 0,
-            right: 0,
-            child: Container(
-              child: Row(
-                children: [
-                  Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/imgs/shopping-venture.jpg'),
-                              fit: BoxFit.cover))),
-                  SizedBox(width: 10),
-                  Expanded(
-                      child: Column(
-                    children: [
-                      Text('Walter',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.grey)),
-                      Text(
-                        'Minha Localização',
-                        style: TextStyle(color: AppColors.SECUNDARY_COLOR),
-                      )
-                    ],
-                  )),
-                  Icon(Icons.location_pin,
-                      color: AppColors.SECUNDARY_COLOR, size: 40)
-                ],
-              ),
-            ))
-      ]),
-    );
+      ),
+      Positioned(top: 100, left: 0, right: 0, child: MapUserBadge()),
+      AnimatedPositioned(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+          left: 0,
+          right: 0,
+          bottom: this.pinPillPosition,
+          child: MapBottomPill()),
+      Positioned(
+          left: 0,
+          right: 0,
+          top: 0,
+          child: MainAppBar(
+            showProfilePic: false,
+          ))
+    ]));
   }
 
   void showPinsOnMap() {
     setState(() {
       _markers.add(Marker(
-        markerId: MarkerId('sourcePin'),
-        // position: currentLocation,
-        // icon: sourceIcon,
-      ));
+          markerId: MarkerId('sourcePin'),
+          position: currentLocation,
+          icon: sourceIcon,
+          onTap: () {
+            setState(() {
+              // this.userBadgeSelected = true;
+            });
+          }));
 
       _markers.add(Marker(
-        markerId: MarkerId('destinationPin'),
-        // position: currentLocation,
-        // icon: sourceIcon,
-      ));
+          markerId: MarkerId('destinationPin'),
+          position: destinationLocation,
+          icon: destinationIcon,
+          onTap: () {
+            setState(() {
+              this.pinPillPosition = PIN_VISIBLE_POSITION;
+            });
+          }));
     });
   }
 }
