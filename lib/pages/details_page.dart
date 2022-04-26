@@ -3,6 +3,7 @@ import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/models/categorypart.dart';
 import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/pages/category_list_page.dart';
+import 'package:marketonline/pages/mappage.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/categorypartlist.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
@@ -137,7 +138,10 @@ class _DetailsPageState extends State<DetailsPage> {
                   ThemeButton(
                     label: 'Localização do Produto',
                     icon: Icon(Icons.location_pin, color: Colors.white),
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MapPage()));
+                    },
                     color: AppColors.DARK_BLUE,
                     highlight: Color.fromARGB(255, 102, 100, 139),
                   ),
