@@ -10,13 +10,13 @@ import 'dart:ui';
 
 void main() {
   runApp(MaterialApp(
-      theme: ThemeData(fontFamily: 'Raleway'),
-      debugShowCheckedModeBanner: false,
-      home:
-          // DetailsPage(
-          MapPage()
-      //SplashPage(duration: 3, goToPage: WelcomePage()),
-      ));
+    theme: ThemeData(fontFamily: 'Raleway'),
+    debugShowCheckedModeBanner: false,
+    home:
+        // DetailsPage(
+
+        SplashPage(duration: 3, goToPage: WelcomePage()),
+  ));
 }
 
 class IconFont extends StatelessWidget {

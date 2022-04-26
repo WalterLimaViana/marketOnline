@@ -2,9 +2,12 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
+import 'package:marketonline/helpers/util.dart';
+import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/widgets/mapuserbadge.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
@@ -19,6 +22,9 @@ const double PIN_VISIBLE_POSITION = 20;
 const double PIN_INVISIBLE_POSITION = -220;
 
 class MapPage extends StatefulWidget {
+  MapPage({Key? key, this.subCategory}) : super(key: key);
+
+  SubCategory? subCategory;
   @override
   State<MapPage> createState() => _MapPageState();
 }
@@ -34,23 +40,29 @@ class _MapPageState extends State<MapPage> {
   late LatLng destinationLocation;
   bool? userBadgeSelected = false;
 
+  Set<Polyline> _polylines = Set<Polyline>();
+  List<LatLng> polylineCoordinates = [];
+  late PolylinePoints polylinePoints;
+
   @override
   void initState() {
     super.initState();
+    polylinePoints = PolylinePoints();
     //set up o local inicial
     this.setInitialLocation();
     //set uo o local de destino
-    this.setSourceAndDestinationMarkerIcons();
   }
 
-  void setSourceAndDestinationMarkerIcons() async {
+  void setSourceAndDestinationMarkerIcons(BuildContext context) async {
+    String parentCat = widget.subCategory!.imgName!.split("_")[0];
+
     sourceIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.0),
-        'assets/imgs/source_pin.png');
+        'assets/imgs/source_pin${Utils.deviceSuffix(context)}.png');
 
     destinationIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.0),
-        'assets/imgs/destination_pin.png');
+        'assets/imgs/destination_pin${parentCat}${Utils.deviceSuffix(context)}.png');
   }
 
   void setInitialLocation() {
@@ -63,6 +75,8 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    this.setSourceAndDestinationMarkerIcons(context);
+
     CameraPosition initialCameraPosition = CameraPosition(
         zoom: CAMERA_ZOOM,
         tilt: CAMERA_TILT,
@@ -75,6 +89,7 @@ class _MapPageState extends State<MapPage> {
           myLocationEnabled: true,
           compassEnabled: false,
           tiltGesturesEnabled: false,
+          polylines: _polylines,
           markers: _markers,
           mapType: MapType.normal,
           initialCameraPosition: initialCameraPosition,
@@ -88,6 +103,7 @@ class _MapPageState extends State<MapPage> {
             _controller.complete(controller);
 
             showPinsOnMap();
+            setPolylines();
           },
         ),
       ),
@@ -98,7 +114,7 @@ class _MapPageState extends State<MapPage> {
           left: 0,
           right: 0,
           bottom: this.pinPillPosition,
-          child: MapBottomPill()),
+          child: MapBottomPill(subCategory: widget.subCategory)),
       Positioned(
           left: 0,
           right: 0,
@@ -131,5 +147,27 @@ class _MapPageState extends State<MapPage> {
             });
           }));
     });
+  }
+
+  void setPolylines() async {
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        "AIzaSyCRsV_qAg-Kt_gWk3Um6dCYoa9OU2hsb8o",
+        PointLatLng(currentLocation.latitude, currentLocation.longitude),
+        PointLatLng(
+            destinationLocation.latitude, destinationLocation.longitude));
+
+    if (result.status == 'OK') {
+      result.points.forEach((PointLatLng point) {
+        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+      });
+
+      setState(() {
+        _polylines.add(Polyline(
+            width: 10,
+            polylineId: PolylineId('polyLine'),
+            color: Color(0xFF08A5CB),
+            points: polylineCoordinates));
+      });
+    }
   }
 }

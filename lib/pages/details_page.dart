@@ -139,8 +139,11 @@ class _DetailsPageState extends State<DetailsPage> {
                     label: 'Localização do Produto',
                     icon: Icon(Icons.location_pin, color: Colors.white),
                     onClick: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MapPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  MapPage(subCategory: widget.subCategory)));
                     },
                     color: AppColors.DARK_BLUE,
                     highlight: Color.fromARGB(255, 102, 100, 139),

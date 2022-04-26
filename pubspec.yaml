@@ -32,6 +32,7 @@ dependencies:
   http: ^0.13.4
   html: ^0.15.0
   google_maps_flutter: ^2.1.3
+  flutter_polyline_points: ^1.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -86,6 +87,27 @@ flutter:
     - assets/imgs/destination_pin.png
     - assets/imgs/destination_pin_ios.png
     - assets/imgs/destination_pin_android.png
+    - assets/imgs/destination_pin_cat1_android.png
+    - assets/imgs/destination_pin_cat2_android.png
+    - assets/imgs/destination_pin_cat3_android.png
+    - assets/imgs/destination_pin_cat4_android.png
+    - assets/imgs/destination_pin_cat5_android.png
+    - assets/imgs/destination_pin_cat6_android.png
+    - assets/imgs/destination_pin_cat1_ios.png
+    - assets/imgs/destination_pin_cat2_ios.png
+    - assets/imgs/destination_pin_cat3_ios.png
+    - assets/imgs/destination_pin_cat4_ios.png
+    - assets/imgs/destination_pin_cat5_ios.png
+    - assets/imgs/destination_pin_cat6_ios.png
+    - assets/imgs/destination_pin_cat1.png
+    - assets/imgs/destination_pin_cat2.png
+    - assets/imgs/destination_pin_cat3.png
+    - assets/imgs/destination_pin_cat4.png
+    - assets/imgs/destination_pin_cat5.png
+    - assets/imgs/destination_pin_cat6.png
+
+
+
 
 
     

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
+import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 
 class MapBottomPill extends StatelessWidget {
-  const MapBottomPill({Key? key}) : super(key: key);
-
+  MapBottomPill({Key? key, this.subCategory}) : super(key: key);
+  SubCategory? subCategory;
   @override
   Widget build(BuildContext context) {
     return Container(

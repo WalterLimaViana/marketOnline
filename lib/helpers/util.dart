@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/models/category.dart';
@@ -130,5 +132,23 @@ class Utils {
           icon: IconFontHelper.LIMPEZA,
           subCategories: []),
     ];
+  }
+
+  static String deviceSuffix(BuildContext context) {
+    String deviceSuffix = '';
+    TargetPlatform platform = Theme.of(context).platform;
+    switch (platform) {
+      case TargetPlatform.android:
+        deviceSuffix = 'android';
+        break;
+      case TargetPlatform.iOS:
+        deviceSuffix = 'ios';
+        break;
+      default:
+        deviceSuffix = '';
+        break;
+    }
+
+    return deviceSuffix;
   }
 }
