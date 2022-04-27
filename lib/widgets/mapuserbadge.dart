@@ -14,7 +14,7 @@ class MapUserBadge extends StatelessWidget {
       padding: EdgeInsets.all(12),
       margin: EdgeInsets.only(top: 10, bottom: 18, left: 20, right: 20),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: this.isSelected! ? AppColors.SECUNDARY_COLOR : Colors.white,
           borderRadius: BorderRadius.circular(100),
           boxShadow: [
             BoxShadow(
@@ -32,8 +32,11 @@ class MapUserBadge extends StatelessWidget {
                   image: DecorationImage(
                       image: AssetImage('assets/imgs/shopping-venture.jpg'),
                       fit: BoxFit.cover),
-                  border:
-                      Border.all(color: AppColors.SECUNDARY_COLOR, width: 1))),
+                  border: Border.all(
+                      color: this.isSelected!
+                          ? Colors.white
+                          : AppColors.SECUNDARY_COLOR,
+                      width: 1))),
           SizedBox(width: 10),
           Expanded(
               child: Column(
@@ -41,14 +44,21 @@ class MapUserBadge extends StatelessWidget {
             children: [
               Text('Walter',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.grey)),
+                      fontWeight: FontWeight.bold,
+                      color: this.isSelected! ? Colors.white : Colors.grey)),
               Text(
                 'Minha Localização',
-                style: TextStyle(color: AppColors.SECUNDARY_COLOR),
+                style: TextStyle(
+                    color: this.isSelected!
+                        ? Colors.white
+                        : AppColors.SECUNDARY_COLOR),
               )
             ],
           )),
-          Icon(Icons.location_pin, color: AppColors.SECUNDARY_COLOR, size: 40)
+          Icon(Icons.location_pin,
+              color:
+                  this.isSelected! ? Colors.white : AppColors.SECUNDARY_COLOR,
+              size: 40)
         ],
       ),
     );

@@ -32,7 +32,7 @@ class MapBottomPill extends StatelessWidget {
                   children: [
                     ClipOval(
                       child: Image.asset(
-                        'assets/imgs/acougue.jpg',
+                        'assets/imgs/${this.subCategory!.imgName}.jpg',
                         width: 60,
                         height: 60,
                         fit: BoxFit.cover,
@@ -42,8 +42,8 @@ class MapBottomPill extends StatelessWidget {
                         bottom: -10,
                         right: -10,
                         child: CategoryIcon(
-                            color: AppColors.MEATS,
-                            iconName: IconFontHelper.ACOUGUE,
+                            color: this.subCategory!.color,
+                            iconName: this.subCategory!.icon,
                             size: 20,
                             padding: 5))
                   ],
@@ -54,7 +54,7 @@ class MapBottomPill extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Carne Bovina',
+                        this.subCategory!.name!,
                         style: TextStyle(
                             color: Colors.grey[700],
                             fontWeight: FontWeight.bold,
@@ -63,12 +63,13 @@ class MapBottomPill extends StatelessWidget {
                       Text('Venda por quilo'),
                       Text(
                         '2km de distância',
-                        style: TextStyle(color: AppColors.MEATS),
+                        style: TextStyle(color: this.subCategory!.color),
                       )
                     ],
                   ),
                 ),
-                Icon(Icons.location_pin, color: AppColors.MEATS, size: 50)
+                Icon(Icons.location_pin,
+                    color: this.subCategory!.color, size: 50)
               ],
             ),
           ),
@@ -86,8 +87,8 @@ class MapBottomPill extends StatelessWidget {
                           image: DecorationImage(
                               image: AssetImage('assets/imgs/acougue.jpg'),
                               fit: BoxFit.cover),
-                          border:
-                              Border.all(color: AppColors.MEATS, width: 4))),
+                          border: Border.all(
+                              color: this.subCategory!.color!, width: 4))),
                   SizedBox(width: 20),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

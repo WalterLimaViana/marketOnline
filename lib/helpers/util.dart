@@ -139,10 +139,10 @@ class Utils {
     TargetPlatform platform = Theme.of(context).platform;
     switch (platform) {
       case TargetPlatform.android:
-        deviceSuffix = 'android';
+        deviceSuffix = '_android';
         break;
       case TargetPlatform.iOS:
-        deviceSuffix = 'ios';
+        deviceSuffix = '_ios';
         break;
       default:
         deviceSuffix = '';

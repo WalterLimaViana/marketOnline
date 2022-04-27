@@ -13,8 +13,9 @@ import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
 import 'package:marketonline/widgets/mapbottompill.dart';
 
-const LatLng SOURCE_LOCATION = LatLng(42.7477863, -71.1699932);
-const LatLng DEST_LOCATION = LatLng(42.744421, -71.1698939);
+const LatLng SOURCE_LOCATION = LatLng(-23.7270685, -46.5547158);
+//-23.7282932,-46.5610864
+const LatLng DEST_LOCATION = LatLng(-23.7282932, -46.5610864);
 const double CAMERA_ZOOM = 16;
 const double CAMERA_TILT = 80;
 const double CAMERA_BEARING = 30;
@@ -62,7 +63,7 @@ class _MapPageState extends State<MapPage> {
 
     destinationIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.0),
-        'assets/imgs/destination_pin${parentCat}${Utils.deviceSuffix(context)}.png');
+        'assets/imgs/destination_pin${Utils.deviceSuffix(context)}.png');
   }
 
   void setInitialLocation() {
@@ -96,7 +97,7 @@ class _MapPageState extends State<MapPage> {
           onTap: (LatLng loc) {
             setState(() {
               this.pinPillPosition = PIN_INVISIBLE_POSITION;
-              // this.userBadgeSelected = false;
+              this.userBadgeSelected = false;
             });
           },
           onMapCreated: (GoogleMapController controller) {
@@ -107,7 +108,13 @@ class _MapPageState extends State<MapPage> {
           },
         ),
       ),
-      Positioned(top: 100, left: 0, right: 0, child: MapUserBadge()),
+      Positioned(
+          top: 100,
+          left: 0,
+          right: 0,
+          child: MapUserBadge(
+            isSelected: this.userBadgeSelected,
+          )),
       AnimatedPositioned(
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInOut,
@@ -133,7 +140,7 @@ class _MapPageState extends State<MapPage> {
           icon: sourceIcon,
           onTap: () {
             setState(() {
-              // this.userBadgeSelected = true;
+              this.userBadgeSelected = true;
             });
           }));
 
