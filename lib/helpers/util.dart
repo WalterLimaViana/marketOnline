@@ -43,11 +43,23 @@ class Utils {
                   CategoryPart(
                       name: 'Picanha', imgName: 'picanha', isSelected: false),
                   CategoryPart(
-                      name: 'Picanha', imgName: 'picanha', isSelected: false),
+                      name: 'Acém', imgName: 'acem', isSelected: false),
                   CategoryPart(
-                      name: 'Picanha', imgName: 'picanha', isSelected: false),
+                      name: 'Contra-filé',
+                      imgName: 'contrafile',
+                      isSelected: false),
                   CategoryPart(
-                      name: 'Picanha', imgName: 'picanha', isSelected: false),
+                      name: 'Alcatra', imgName: 'alcatra', isSelected: false),
+                  CategoryPart(
+                      name: 'Cupim', imgName: 'cupim', isSelected: false),
+                  CategoryPart(
+                      name: 'Patinho', imgName: 'patinho', isSelected: false),
+                  CategoryPart(
+                      name: 'Maminha', imgName: 'maminha', isSelected: false),
+                  CategoryPart(
+                      name: 'Lagarto', imgName: 'lagarto', isSelected: false),
+                  CategoryPart(
+                      name: 'Músculo', imgName: 'musculo', isSelected: false),
                 ]),
             SubCategory(
                 color: AppColors.MEATS,
