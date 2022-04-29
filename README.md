@@ -1,16 +1,22 @@
 # marketonline
 
-A new Flutter project.
+O MarketOnline é um projeto de um supermercado online, um aplicativo onde você pode selecionar os produtos que quer, fazer o pagamento e receber direto na sua residência.
 
-## Getting Started
+## Sobre o Aplicativo
 
-This project is a starting point for a Flutter application.
+Esse aplicativo foi desenvolvido utlizando a linguagem flutter e dart, com a autenticação realizada pelo firebase, utlizando a conta google como login.
+Nesse projeto os objetivos propostos são:
 
-A few resources to get you started if this is your first Flutter project:
+- Ter um menu inicial onde são apresentados categorias de produtos, utilizando o listview;
+- Ter uma seção para cada categoria, onde será uma subcategoria, utilizando o grid view;
+- Ter uma seção de introdução, apresentando o aplicativo;
+- Possuir login, para acessar o conteúdo, utilizando a conta google e autenticado pelo firebase;
+- Ter uma página com quantidade e valores, que enviará a quantidade pedida pelo cliente ao carrinho;
+- Ter o carrinho onde todos os itens solicitados poderão ser visualizados e confirmados para a entrega;
+- Mostrar a localização dos produtos;
+- Ter um perfil com as informações do cliente utilizando o Drawer;
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## API's
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Firebase;
+- Google Maps;
