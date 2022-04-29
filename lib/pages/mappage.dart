@@ -63,7 +63,7 @@ class _MapPageState extends State<MapPage> {
 
     destinationIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.0),
-        'assets/imgs/destination_pin${Utils.deviceSuffix(context)}.png');
+        'assets/imgs/destination_pin_${Utils.deviceSuffix(context)}.png');
   }
 
   void setInitialLocation() {

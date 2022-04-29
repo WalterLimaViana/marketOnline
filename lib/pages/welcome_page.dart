@@ -5,11 +5,17 @@ import 'package:marketonline/helpers/util.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/pages/category_list_page.dart';
 import 'package:marketonline/pages/onboardingpage.dart';
+import 'package:marketonline/services/loginservice.dart';
+import 'package:marketonline/widgets/iconfont.dart';
 import 'package:marketonline/widgets/themebutton.dart';
+import 'package:provider/provider.dart';
 
 class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    LoginService loginService =
+        Provider.of<LoginService>(context, listen: false);
+
     return Scaffold(
       body: Container(
           child: Stack(
@@ -77,12 +83,16 @@ class WelcomePage extends StatelessWidget {
                   highlight: AppColors.SECUNDARY_COLOR.withOpacity(0.5),
                   borderColor: AppColors.SECUNDARY_COLOR,
                   borderWidth: 4,
-                  onClick: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CategoryListPage(),
-                        ));
+                  onClick: () async {
+                    bool success = await loginService.signWithGoogle();
+
+                    if (success) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CategoryListPage(),
+                          ));
+                    }
                   },
                 )
               ],
