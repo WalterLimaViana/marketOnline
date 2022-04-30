@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "139219729112-fmfgkjjc2utcgfll7fcsfhagbcmpl0df.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.marketonline",
+            "certificate_hash": "095d0354c8943c50a05fba3eeafe5f2f5557004d"
+          }
+        },
+        {
           "client_id": "139219729112-j0jfghdtlttavre1ki0upnr6ne8igge0.apps.googleusercontent.com",
           "client_type": 3
         }

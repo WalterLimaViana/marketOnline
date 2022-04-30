@@ -47,6 +47,7 @@ android {
         applicationId "com.example.marketonline"
         minSdkVersion 20
         targetSdkVersion 31
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -70,4 +71,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth:20.0.3'
     implementation 'com.google.firebase:firebase-firestore:22.1.1'
+    implementation "androidx.multidex:multidex:2.0.1"
 }
