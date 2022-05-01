@@ -6,7 +6,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
-import 'package:marketonline/helpers/util.dart';
+import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:marketonline/widgets/mapuserbadge.dart';

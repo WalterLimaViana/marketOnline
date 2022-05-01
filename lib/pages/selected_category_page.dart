@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/models/category.dart';
 import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/pages/details_page.dart';
@@ -49,9 +50,11 @@ class SelectedCategoryPage extends StatelessWidget {
                     this.selectedCategory!.subCategories!.length, (index) {
                   return GestureDetector(
                     onTap: () {
-                      catSelection.selectedSubCategory =
-                          this.selectedCategory!.subCategories![index];
-                      Navigator.of(context).pushNamed('/detailspage');
+                      var subcat =
+                          this.selectedCategory!.subCategories!.length[index];
+                      catSelection.selectedSubCategory = cartService
+                          .getCategoryFromCart(subcat as SubCategory);
+                      Utils.mainAppNav.currentState!.pushNamed('/detailspage');
                     },
                     child: Container(
                         child: Column(

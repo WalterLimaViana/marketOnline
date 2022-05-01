@@ -1,7 +1,7 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:marketonline/helpers/util.dart';
+import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/pages/category_list_page.dart';
 import 'package:marketonline/pages/details_page.dart';
 import 'package:marketonline/pages/mappage.dart';
@@ -22,7 +22,7 @@ void main() {
         Provider(
           create: (_) => LoginService(),
         ),
-        Provider(create: (_) => CategorySelectionService()),
+        ChangeNotifierProvider(create: (_) => CategorySelectionService()),
         Provider(create: (_) => CartService())
       ],
       child: MaterialApp(

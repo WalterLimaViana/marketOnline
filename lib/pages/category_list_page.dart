@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
-import 'package:marketonline/helpers/util.dart';
+import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/models/category.dart';
 import 'package:marketonline/pages/selected_category_page.dart';
