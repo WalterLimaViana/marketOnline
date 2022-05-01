@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:marketonline/models/category.dart';
@@ -49,7 +50,7 @@ class SelectedCategoryPage extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       catSelection.selectedSubCategory =
-                          this.selectedCategory.subCategories[index];
+                          this.selectedCategory!.subCategories![index];
                       Navigator.of(context).pushNamed('/detailspage');
                     },
                     child: Container(
