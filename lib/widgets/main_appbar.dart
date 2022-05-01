@@ -3,6 +3,7 @@ import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/widgets/iconfont.dart';
+import 'package:marketonline/widgets/userprofileheader.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
   Color? themeColor;
@@ -34,18 +35,8 @@ class MainAppBarState extends State<MainAppBar> {
       elevation: 0.0,
       iconTheme: IconThemeData(color: widget.themeColor),
       actions: [
-        Opacity(
-          opacity: widget.showProfilePic! ? 1.0 : 0,
-          child: Container(
-              margin: EdgeInsets.only(right: 5),
-              padding: EdgeInsets.all(10),
-              child: ClipOval(
-                  child: Image.asset(
-                'assets/imgs/shopping-venture.jpg',
-                width: 40,
-                height: 40,
-                fit: BoxFit.cover,
-              ))),
+        UserProfileHeader(
+          showProfilePic: widget.showProfilePic,
         )
       ],
     );
