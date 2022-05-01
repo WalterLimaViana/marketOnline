@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
+import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/widgets/iconfont.dart';
 import 'package:marketonline/widgets/userprofileheader.dart';
@@ -26,8 +27,8 @@ class MainAppBarState extends State<MainAppBar> {
     return AppBar(
       title: GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .popUntil((route) => route.settings.name == '/categorylistpage');
+          Utils.mainAppNav.currentState!
+              .popUntil((route) => route.settings.name == '/mainpage');
         },
         child: Center(
           child: IconFont(

@@ -63,7 +63,7 @@ class WelcomePage extends StatelessWidget {
                   highlight: AppColors.HIGHTLIGHT_DEFAULT,
                   color: AppColors.SECUNDARY_COLOR,
                   onClick: () {
-                    Navigator.of(context).pushNamed('/categorylistpage');
+                    Utils.mainAppNav.currentState!.pushNamed('/mainpage');
                   },
                 ),
                 ThemeButton(
@@ -71,7 +71,7 @@ class WelcomePage extends StatelessWidget {
                   highlight: Colors.blue[900],
                   color: AppColors.DARK_BLUE,
                   onClick: () {
-                    Navigator.of(context).pushNamed('/onboardingpage');
+                    Utils.mainAppNav.currentState!.pushNamed('/onboardingpage');
                   },
                 ),
                 ThemeButton(
@@ -85,7 +85,7 @@ class WelcomePage extends StatelessWidget {
                     bool success = await loginService.signWithGoogle();
 
                     if (success) {
-                      Navigator.of(context).pushNamed('/categorylistpage');
+                      Utils.mainAppNav.currentState!.pushNamed('/mainpage');
                     }
                   },
                 )

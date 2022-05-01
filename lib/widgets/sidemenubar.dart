@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
+import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/services/loginservice.dart';
 import 'package:marketonline/widgets/iconfont.dart';
 import 'package:provider/provider.dart';
@@ -23,12 +24,13 @@ class SideMenuBar extends StatelessWidget {
                 onPressed: () async {
                   if (userLoggedIn) {
                     loginService.signOut();
-                    Navigator.of(context).pushReplacementNamed('/welcomepage');
+                    Utils.mainAppNav.currentState!
+                        .pushReplacementNamed('/welcomepage');
                   } else {
                     bool success = await loginService.signWithGoogle();
                     if (success) {
-                      Navigator.of(context)
-                          .pushReplacementNamed('/categorylistpage');
+                      Utils.mainAppNav.currentState!
+                          .pushReplacementNamed('/mainpage');
                     }
                   }
                 },

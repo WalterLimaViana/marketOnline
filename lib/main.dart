@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/pages/category_list_page.dart';
 import 'package:marketonline/pages/details_page.dart';
+import 'package:marketonline/pages/mainpage.dart';
 import 'package:marketonline/pages/mappage.dart';
 import 'package:marketonline/pages/onboardingpage.dart';
 import 'package:marketonline/pages/selected_category_page.dart';
@@ -26,13 +27,14 @@ void main() {
         Provider(create: (_) => CartService())
       ],
       child: MaterialApp(
+        navigatorKey: Utils.mainAppNav,
         theme: ThemeData(fontFamily: 'Raleway'),
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
           '/': (context) => SplashPage(duration: 3, goToPage: WelcomePage()),
           '/welcomepage': (context) => WelcomePage(),
-          '/categorylistpage': (context) => CategoryListPage(),
+          '/mainpage': (context) => MainPage(),
           '/selectedcategorypage': (context) => SelectedCategoryPage(),
           '/detailspage': (context) => DetailsPage(),
           '/mappage': (context) => MapPage(),

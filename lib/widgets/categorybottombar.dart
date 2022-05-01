@@ -25,9 +25,11 @@ class CategoryBottomBar extends StatelessWidget {
                 child: IconButton(
                     splashColor: Colors.grey[100],
                     highlightColor: Colors.grey[100],
-                    icon:
-                        Icon(Icons.favorite, color: AppColors.SECUNDARY_COLOR),
-                    onPressed: () {})),
+                    icon: Icon(Icons.list, color: AppColors.SECUNDARY_COLOR),
+                    onPressed: () {
+                      Utils.mainListNav.currentState!
+                          .pushReplacementNamed('/mainpage/categorylistpage');
+                    })),
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(50),
@@ -75,8 +77,11 @@ class CategoryBottomBar extends StatelessWidget {
                     splashColor: Colors.grey[100],
                     highlightColor: Colors.grey[100],
                     icon:
-                        Icon(Icons.pin_drop, color: AppColors.SECUNDARY_COLOR),
-                    onPressed: () {})),
+                        Icon(Icons.favorite, color: AppColors.SECUNDARY_COLOR),
+                    onPressed: () {
+                      Utils.mainListNav.currentState!
+                          .pushReplacementNamed('/mainpage/favoritespage');
+                    })),
           ),
           ClipOval(
             child: Material(
@@ -86,7 +91,10 @@ class CategoryBottomBar extends StatelessWidget {
                     highlightColor: Colors.grey[100],
                     icon:
                         Icon(Icons.settings, color: AppColors.SECUNDARY_COLOR),
-                    onPressed: () {})),
+                    onPressed: () {
+                      Utils.mainListNav.currentState!
+                          .pushReplacementNamed('/mainpage/settingspage');
+                    })),
           ),
         ],
       ),

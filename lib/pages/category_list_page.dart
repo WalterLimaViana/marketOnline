@@ -27,36 +27,6 @@ class CategoryListPage extends StatelessWidget {
           child: SideMenuBar(),
         ),
         appBar: MainAppBar(),
-        body: Container(
-            child: Stack(children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: Text(
-                  'Selecione uma categoria:',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              Expanded(
-                  child: ListView.builder(
-                      padding: EdgeInsets.only(bottom: 120),
-                      itemCount: categories.length,
-                      itemBuilder: (BuildContext ctx, int index) {
-                        return CategoryCard(
-                            category: categories[index],
-                            onCardClick: () {
-                              catSelection.selectedCategory =
-                                  this.categories[index];
-                              Navigator.of(context)
-                                  .pushNamed('/selectedcategorypage');
-                            });
-                      }))
-            ],
-          ),
-          Positioned(bottom: 0, left: 0, right: 0, child: CategoryBottomBar())
-        ])));
+        body: Container());
   }
 }

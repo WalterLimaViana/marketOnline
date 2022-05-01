@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
+import 'package:marketonline/helpers/unitenums.dart';
 import 'package:marketonline/models/category.dart';
 import 'package:marketonline/models/categorypart.dart';
 import 'package:marketonline/models/onboardingcontent.dart';
@@ -10,6 +11,9 @@ import 'dart:ui';
 import '../models/subcategory.dart';
 
 class Utils {
+  static GlobalKey<NavigatorState> mainListNav = GlobalKey();
+  static GlobalKey<NavigatorState> mainAppNav = GlobalKey();
+
   static List<Onboardingcontent> getOnboarding() {
     return [
       Onboardingcontent(
@@ -144,6 +148,19 @@ class Utils {
           icon: IconFontHelper.LIMPEZA,
           subCategories: []),
     ];
+  }
+
+  static String weightUnitToString(WeightUnits unit) {
+    switch (unit) {
+      case WeightUnits.Kg:
+        return 'kg.';
+      case WeightUnits.Lb:
+        return 'lb.';
+      case WeightUnits.Oz:
+        return 'oz.';
+      default:
+        return 'lb.';
+    }
   }
 
   static String deviceSuffix(BuildContext context) {

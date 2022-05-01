@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
+import 'package:marketonline/helpers/unitenums.dart';
+import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:provider/provider.dart';
+
+const int MAX_VALUE = 20;
+const int MIN_VALUE = 0;
 
 class UnitPriceWidget extends StatefulWidget {
   Color? themeColor;
@@ -22,7 +27,7 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
         Provider.of<CategorySelectionService>(context);
     SubCategory? subCategory = catSelection.selectedSubCategory;
 
-    widget.themeColor = subCategory.themeColor;
+    widget.themeColor = subCategory!.themeColor;
     widget.price = subCategory.price;
     widget.unit = subCategory.unit;
 
@@ -54,48 +59,47 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: widget.amount < 20
+                    onTap: catSelection.subCategoryAmount < MAX_VALUE
                         ? () {
-                            //increment
-                            setState(() {
-                              widget.amount++;
-                              widget.cost = widget.price * widget.amount;
-                            });
+                            catSelection.incrementSubCategoryAmount();
                           }
                         : null,
-                    child: Icon(
-                      Icons.add_circle_outline,
-                      size: 50,
-                      color: AppColors.MEATS,
-                    ),
+                    child: Icon(Icons.add_circle_outline,
+                        size: 50,
+                        color: catSelection.subCategoryAmount < MAX_VALUE
+                            ? widget.themeColor
+                            : widget.themeColor!.withOpacity(0.2)),
                   ),
                   Expanded(
                       child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Center(
-                      child: Text.rich(TextSpan(children: [
-                        TextSpan(
-                            text: widget.amount.toString(),
-                            style: TextStyle(fontSize: 40)),
-                        TextSpan(text: ' Kg', style: TextStyle(fontSize: 20))
-                      ])),
-                    ),
-                  )),
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Consumer<CategorySelectionService>(
+                            builder: (context, cat, child) {
+                              return Center(
+                                child: Text.rich(TextSpan(children: [
+                                  TextSpan(
+                                      text: catSelection.subCategoryAmount
+                                          .toString(),
+                                      style: TextStyle(fontSize: 40)),
+                                  TextSpan(
+                                      text: Utils.weightUnitToString(
+                                          widget.unit!),
+                                      style: TextStyle(fontSize: 20))
+                                ])),
+                              );
+                            },
+                          ))),
                   GestureDetector(
-                    onTap: widget.amount > 0
+                    onTap: catSelection.subCategoryAmount < MIN_VALUE
                         ? () {
-                            //decrement
-                            setState(() {
-                              widget.amount--;
-                              widget.cost = widget.price * widget.amount;
-                            });
+                            catSelection.decrementSubCategoryAmount();
                           }
                         : null,
-                    child: Icon(
-                      Icons.remove_circle_outline,
-                      size: 50,
-                      color: Colors.grey,
-                    ),
+                    child: Icon(Icons.remove_circle_outline,
+                        size: 50,
+                        color: catSelection.subCategoryAmount > MIN_VALUE
+                            ? widget.themeColor
+                            : widget.themeColor!.withOpacity(0.2)),
                   ),
                 ])),
         Padding(
