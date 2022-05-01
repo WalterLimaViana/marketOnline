@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
+import 'package:marketonline/models/cartitem.dart';
 import 'package:marketonline/models/categorypart.dart';
 import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/pages/category_list_page.dart';
 import 'package:marketonline/pages/mappage.dart';
+import 'package:marketonline/services/cartservices.dart';
+import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/categorypartlist.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
 import 'package:marketonline/widgets/themebutton.dart';
 import 'package:marketonline/widgets/unitpricewidget.dart';
+import 'package:provider/provider.dart';
 
 class DetailsPage extends StatefulWidget {
   int amount = 0;
@@ -23,8 +27,14 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  var cart;
+
   @override
   Widget build(BuildContext context) {
+    CategorySelectionService catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
+    widget.subCategory = catSelection.selectedSubCategory;
+    CartService cartService = Provider.of<CartService>(context, listen: false);
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -109,9 +119,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                   offset: Offset.zero)
                             ]),
                         child: Row(children: [
-                          Text(
-                            '3',
-                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          Consumer<CartService>(
+                            builder: (context, cart, child) {
+                              return Text(
+                                '${cart.items.length}',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              );
+                            },
                           ),
                           Icon(Icons.shopping_cart,
                               color: Colors.white, size: 15)
@@ -130,20 +145,42 @@ class _DetailsPageState extends State<DetailsPage> {
                 children: [
                   CategoryPartList(subCategory: widget.subCategory),
                   UnitPriceWidget(),
-                  ThemeButton(
-                    label: 'Adicionar ao Carrinho',
-                    icon: Icon(Icons.shopping_cart, color: Colors.white),
-                    onClick: () {},
-                  ),
+                  Consumer<CartService>(builder: (context, value, child) {
+                    Widget renderedButton;
+                    if (!cart.isSubCategoryAddesdToCart(widget.subCategory)) {
+                      renderedButton = ThemeButton(
+                        label: 'Adicionar ao Carrinho',
+                        icon: Icon(Icons.shopping_cart, color: Colors.white),
+                        onClick: () {
+                          cartService
+                              .add(CartItem(category: widget.subCategory));
+                        },
+                      );
+                    } else {
+                      renderedButton = Container(
+                        padding: EdgeInsets.all(26),
+                        child: Row(
+                          children: [
+                            Text('Adicionado ao Carrinho',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.SECUNDARY_COLOR)),
+                            SizedBox(width: 10),
+                            Icon(Icons.check_circle,
+                                size: 30, color: AppColors.SECUNDARY_COLOR)
+                          ],
+                        ),
+                      );
+                    }
+                    return renderedButton;
+                  }),
                   ThemeButton(
                     label: 'Localização do Produto',
                     icon: Icon(Icons.location_pin, color: Colors.white),
                     onClick: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MapPage(subCategory: widget.subCategory)));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MapPage()));
                     },
                     color: AppColors.DARK_BLUE,
                     highlight: Color.fromARGB(255, 102, 100, 139),

@@ -8,10 +8,12 @@ import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/helpers/util.dart';
 import 'package:marketonline/models/subcategory.dart';
+import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:marketonline/widgets/mapuserbadge.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
 import 'package:marketonline/widgets/mapbottompill.dart';
+import 'package:provider/provider.dart';
 
 const LatLng SOURCE_LOCATION = LatLng(-23.7270685, -46.5547158);
 //-23.7282932,-46.5610864
@@ -76,6 +78,10 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    CategorySelectionService catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
+    widget.subCategory = catSelection.selectedSubCategory;
+
     this.setSourceAndDestinationMarkerIcons(context);
 
     CameraPosition initialCameraPosition = CameraPosition(
@@ -121,7 +127,7 @@ class _MapPageState extends State<MapPage> {
           left: 0,
           right: 0,
           bottom: this.pinPillPosition,
-          child: MapBottomPill(subCategory: widget.subCategory)),
+          child: MapBottomPill()),
       Positioned(
           left: 0,
           right: 0,

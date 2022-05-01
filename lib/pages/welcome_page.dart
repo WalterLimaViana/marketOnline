@@ -62,18 +62,16 @@ class WelcomePage extends StatelessWidget {
                   label: 'Comprar Agora',
                   highlight: AppColors.HIGHTLIGHT_DEFAULT,
                   color: AppColors.SECUNDARY_COLOR,
-                  onClick: () {},
+                  onClick: () {
+                    Navigator.of(context).pushNamed('/categorylistpage');
+                  },
                 ),
                 ThemeButton(
                   label: 'Introdução',
                   highlight: Colors.blue[900],
                   color: AppColors.DARK_BLUE,
                   onClick: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Onboardingpage(),
-                        ));
+                    Navigator.of(context).pushNamed('/onboardingpage');
                   },
                 ),
                 ThemeButton(
@@ -87,11 +85,7 @@ class WelcomePage extends StatelessWidget {
                     bool success = await loginService.signWithGoogle();
 
                     if (success) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CategoryListPage(),
-                          ));
+                      Navigator.of(context).pushNamed('/categorylistpage');
                     }
                   },
                 )

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
+import 'package:marketonline/models/subcategory.dart';
+import 'package:marketonline/services/categoryselectionservice.dart';
+import 'package:provider/provider.dart';
 
 class UnitPriceWidget extends StatefulWidget {
+  Color? themeColor;
   int amount = 0;
-  double price = 15.0;
+  double price = 0.0;
+  WeightUnits? unit;
   double cost = 0.0;
 
   @override
@@ -13,6 +18,14 @@ class UnitPriceWidget extends StatefulWidget {
 class _UnitPriceWidgetState extends State<UnitPriceWidget> {
   @override
   Widget build(BuildContext context) {
+    CategorySelectionService catSelection =
+        Provider.of<CategorySelectionService>(context);
+    SubCategory? subCategory = catSelection.selectedSubCategory;
+
+    widget.themeColor = subCategory.themeColor;
+    widget.price = subCategory.price;
+    widget.unit = subCategory.unit;
+
     return Column(
       children: [
         Padding(

@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/models/subcategory.dart';
+import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
+import 'package:provider/provider.dart';
 
 class MapBottomPill extends StatelessWidget {
   MapBottomPill({Key? key, this.subCategory}) : super(key: key);
   SubCategory? subCategory;
   @override
   Widget build(BuildContext context) {
+    CategorySelectionService catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
+    this.subCategory = catSelection.selectedSubCategory;
     return Container(
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(15),

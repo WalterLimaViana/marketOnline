@@ -5,20 +5,27 @@ import 'package:marketonline/helpers/util.dart';
 import 'package:marketonline/main.dart';
 import 'package:marketonline/models/category.dart';
 import 'package:marketonline/pages/selected_category_page.dart';
+import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:marketonline/widgets/categorybottombar.dart';
 import 'package:marketonline/widgets/categorycard.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
+import 'package:marketonline/widgets/sidemenubar.dart';
+import 'package:provider/provider.dart';
 
 class CategoryListPage extends StatelessWidget {
   List<Category> categories = Utils.getMockedCategories();
 
-  get category => null;
+  // get category => null;
 
   @override
   Widget build(BuildContext context) {
+    CategorySelectionService catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
     return Scaffold(
-        drawer: Drawer(),
+        drawer: Drawer(
+          child: SideMenuBar(),
+        ),
         appBar: MainAppBar(),
         body: Container(
             child: Stack(children: [
@@ -41,14 +48,10 @@ class CategoryListPage extends StatelessWidget {
                         return CategoryCard(
                             category: categories[index],
                             onCardClick: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          SelectedCategoryPage(
-                                            selectedCategory:
-                                                this.categories[index],
-                                          )));
+                              catSelection.selectedCategory =
+                                  this.categories[index];
+                              Navigator.of(context)
+                                  .pushNamed('/selectedcategorypage');
                             });
                       }))
             ],
