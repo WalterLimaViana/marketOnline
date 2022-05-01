@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:marketonline/models/category.dart';
 import 'package:marketonline/models/subcategory.dart';
 import 'package:marketonline/pages/details_page.dart';
+import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
+import 'package:provider/provider.dart';
 
 class SelectedCategoryPage extends StatelessWidget {
   Category? selectedCategory;
@@ -14,6 +16,10 @@ class SelectedCategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CategorySelectionService catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
+    selectedCategory = catSelection.selectedCategory;
+
     return Scaffold(
       appBar: MainAppBar(),
       body: Container(
@@ -42,13 +48,9 @@ class SelectedCategoryPage extends StatelessWidget {
                     this.selectedCategory!.subCategories!.length, (index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailsPage(
-                                    subCategory: selectedCategory
-                                        ?.subCategories![index] as SubCategory,
-                                  )));
+                      catSelection.selectedSubCategory =
+                          this.selectedCategory.subCategories[index];
+                      Navigator.of(context).pushNamed('/detailspage');
                     },
                     child: Container(
                         child: Column(
