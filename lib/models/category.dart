@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'dart:js';
 
 class Category {
   String? name;

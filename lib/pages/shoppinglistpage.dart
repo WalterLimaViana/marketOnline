@@ -9,8 +9,6 @@ import 'package:marketonline/widgets/iconfont.dart';
 import 'package:provider/provider.dart';
 
 class ShoppingListPage extends StatelessWidget {
-  const ShoppingListPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     CartService cartService = Provider.of<CartService>(context, listen: false);

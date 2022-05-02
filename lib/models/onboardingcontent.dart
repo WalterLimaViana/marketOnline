@@ -1,6 +1,6 @@
-class Onboardingcontent {
+class OnboardingContent {
   String? message;
   String? img;
 
-  Onboardingcontent({this.message, this.img});
+  OnboardingContent({this.message, this.img});
 }

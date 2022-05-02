@@ -9,13 +9,13 @@ import 'package:marketonline/widgets/iconfont.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
 import 'package:marketonline/widgets/themebutton.dart';
 
-class Onboardingpage extends StatefulWidget {
+class OnboardingPage extends StatefulWidget {
   @override
-  State<Onboardingpage> createState() => _OnboardingpageState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingpageState extends State<Onboardingpage> {
-  List<Onboardingcontent> _content = Utils.getOnboarding();
+class _OnboardingPageState extends State<OnboardingPage> {
+  List<OnboardingContent> _content = Utils.getOnboarding();
 
   int pageIndex = 0;
 
@@ -92,11 +92,8 @@ class _OnboardingpageState extends State<Onboardingpage> {
                             visible: index == _content.length - 1,
                             child: ThemeButton(
                                 onClick: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              CategoryListPage()));
+                                  Utils.mainAppNav.currentState!
+                                      .pushNamed('/mainpage');
                                 },
                                 label: 'Entrar Agora',
                                 color: AppColors.DARK_BLUE,
@@ -132,10 +129,7 @@ class _OnboardingpageState extends State<Onboardingpage> {
             SizedBox(height: 20),
             ThemeButton(
               onClick: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CategoryListPage()));
+                Utils.mainAppNav.currentState!.pushNamed('/mainpage');
               },
               label: 'Pular Introdução',
             )

@@ -14,7 +14,7 @@ class CartService extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool? isSubCategoryAddesdToCart(SubCategory cat) {
+  bool isSubCategoryAddedToCart(SubCategory cat) {
     return _items.length > 0
         ? _items.any((CartItem item) => item.category!.name == cat.name)
         : false;

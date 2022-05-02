@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'dart:js';
 
 import 'package:marketonline/helpers/unitenums.dart';
 import 'package:marketonline/models/categorypart.dart';

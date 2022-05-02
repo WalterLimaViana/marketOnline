@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:marketonline/models/categorypart.dart';
 import 'package:marketonline/models/subcategory.dart';
 
-class CategoryPartList extends StatefulWidget {
+class CategoryPartsList extends StatefulWidget {
   SubCategory? subCategory;
 
-  CategoryPartList({this.subCategory});
+  CategoryPartsList({this.subCategory});
 
   @override
-  State<CategoryPartList> createState() => _CategoryPartListState();
+  State<CategoryPartsList> createState() => _CategoryPartsList();
 }
 
-class _CategoryPartListState extends State<CategoryPartList> {
+class _CategoryPartsList extends State<CategoryPartsList> {
   @override
   Widget build(BuildContext context) {
     return Column(

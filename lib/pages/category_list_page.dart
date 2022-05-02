@@ -16,17 +16,30 @@ import 'package:provider/provider.dart';
 class CategoryListPage extends StatelessWidget {
   List<Category> categories = Utils.getMockedCategories();
 
-  // get category => null;
-
   @override
   Widget build(BuildContext context) {
     CategorySelectionService catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    return Scaffold(
-        drawer: Drawer(
-          child: SideMenuBar(),
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        child: Text('Selecione uma categoria:',
+            textAlign: TextAlign.center, style: TextStyle(color: Colors.black)),
+      ),
+      Expanded(
+        child: ListView.builder(
+          itemCount: categories.length,
+          itemBuilder: (BuildContext ctx, int index) {
+            return CategoryCard(
+                category: categories[index],
+                onCardClick: () {
+                  catSelection.selectedCategory = this.categories[index];
+                  Utils.mainAppNav.currentState!
+                      .pushNamed('/selectedcategorypage');
+                });
+          },
         ),
-        appBar: MainAppBar(),
-        body: Container());
+      )
+    ]);
   }
 }

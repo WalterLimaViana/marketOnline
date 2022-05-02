@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/utils.dart';
@@ -62,7 +61,7 @@ class SelectedCategoryPage extends StatelessWidget {
                                       .selectedCategory!
                                       .subCategories![index]
                                       .imgName! +
-                                  '.png',
+                                  '.jpg',
                               fit: BoxFit.cover,
                               width: 100,
                               height: 100),

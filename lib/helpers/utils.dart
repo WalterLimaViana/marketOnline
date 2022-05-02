@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
@@ -14,16 +13,16 @@ class Utils {
   static GlobalKey<NavigatorState> mainListNav = GlobalKey();
   static GlobalKey<NavigatorState> mainAppNav = GlobalKey();
 
-  static List<Onboardingcontent> getOnboarding() {
+  static List<OnboardingContent> getOnboarding() {
     return [
-      Onboardingcontent(
+      OnboardingContent(
           message: 'Escolha os produtos \nque deseja e adicione ao carrinho',
           img: 'compras-online'),
-      Onboardingcontent(
+      OnboardingContent(
           message:
               'Faça o pagamento\ndiretamente pelo aplicativo,\ncrédito ou débito',
           img: 'pagamento-online'),
-      Onboardingcontent(
+      OnboardingContent(
           message:
               'Além da comodidade de\nacompanhar a localização da sua entrega no app',
           img: 'entrega'),
