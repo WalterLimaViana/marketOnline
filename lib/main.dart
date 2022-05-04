@@ -27,7 +27,7 @@ void main() {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => SplashPage(duration: 3, goToPage: WelcomePage()),
+          '/': (context) => SplashPage(duration: 3, goToPage: '/welcomepage'),
           '/welcomepage': (context) => WelcomePage(),
           '/mainpage': (context) => MainPage(),
           '/selectedcategorypage': (context) => SelectedCategoryPage(),

@@ -62,7 +62,7 @@ class Utils {
                   CategoryPart(
                       name: 'Lagarto', imgName: 'lagarto', isSelected: false),
                   CategoryPart(
-                      name: 'Músculo', imgName: 'musculo', isSelected: false),
+                      name: 'Músculo', imgName: 'img', isSelected: false),
                 ]),
             SubCategory(
                 color: AppColors.MEATS,

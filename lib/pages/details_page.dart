@@ -100,7 +100,7 @@ class DetailsPageState extends State<DetailsPage> {
                           padding: EdgeInsets.only(
                               top: 5, left: 15, right: 15, bottom: 8),
                           decoration: BoxDecoration(
-                              color: AppColors.MAIN_COLOR,
+                              color: AppColors.SECUNDARY_COLOR,
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
@@ -142,7 +142,7 @@ class DetailsPageState extends State<DetailsPage> {
                       Widget renderedButton;
                       if (!cart.isSubCategoryAddedToCart(widget.subCategory!)) {
                         renderedButton = ThemeButton(
-                          label: 'Añadir al Carrito',
+                          label: 'Adicionar ao Carrinho',
                           icon: Icon(Icons.shopping_cart, color: Colors.white),
                           onClick: () {
                             cartService
@@ -156,15 +156,15 @@ class DetailsPageState extends State<DetailsPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Añadido al Carrito',
+                                'Adicionar ao Carrinho',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
-                                    color: AppColors.MAIN_COLOR),
+                                    color: AppColors.SECUNDARY_COLOR),
                               ),
                               SizedBox(width: 10),
                               Icon(Icons.check_circle,
-                                  size: 30, color: AppColors.MAIN_COLOR)
+                                  size: 30, color: AppColors.SECUNDARY_COLOR)
                             ],
                           ),
                         );
@@ -173,13 +173,13 @@ class DetailsPageState extends State<DetailsPage> {
                     },
                   ),
                   ThemeButton(
-                    label: 'Locación del Producto',
+                    label: 'Localização do Produto',
                     icon: Icon(Icons.location_pin, color: Colors.white),
                     onClick: () {
                       Utils.mainAppNav.currentState!.pushNamed('/mappage');
                     },
-                    color: AppColors.DARK_GREEN,
-                    highlight: AppColors.DARKER_GREEN,
+                    color: AppColors.DARK_BLUE,
+                    highlight: AppColors.DARKER_BLUE,
                   )
                 ],
               )),

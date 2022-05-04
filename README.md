@@ -1,4 +1,4 @@
-# marketonline
+# MarketOnline
 
 O MarketOnline é um projeto de um supermercado online, um aplicativo onde você pode selecionar os produtos que quer, fazer o pagamento e receber direto na sua residência.
 
