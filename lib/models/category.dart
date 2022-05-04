@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:marketonline/models/subcategory.dart';
+
 class Category {
   String? name;
   String? icon;
@@ -9,4 +11,13 @@ class Category {
 
   Category(
       {this.name, this.icon, this.color, this.imgName, this.subCategories});
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+        color: Color(int.parse('0xxFF' + json['color'])),
+        icon: json['icon'],
+        name: json['name'],
+        imgName: json['imgName'],
+        subCategories: SubCategory.fromJsonArray(json['subCategories']));
+  }
 }

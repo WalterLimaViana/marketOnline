@@ -12,10 +12,10 @@ import 'package:marketonline/widgets/sidemenubar.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
-  List<Category> categories = Utils.getMockedCategories();
-
   @override
   Widget build(BuildContext context) {
+    // CartService cartService = Provider.of<CartService>(context, listen: false);
+    //   cartService.loadCartItemsFromFirebase(context);
     return Scaffold(
         drawer: Drawer(child: SideMenuBar()),
         appBar: MainAppBar(),

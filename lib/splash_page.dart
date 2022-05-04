@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/main.dart';
+import 'package:marketonline/services/categoryservice.dart';
 import 'package:marketonline/widgets/iconfont.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 class SplashPage extends StatelessWidget {
   int duration = 0;
@@ -14,9 +16,14 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CategoryService catService =
+        Provider.of<CategoryService>(context, listen: false);
     Future.delayed(Duration(seconds: this.duration), () async {
       FirebaseApp app = await Firebase.initializeApp();
-      Utils.mainAppNav.currentState!.pushNamed(this.goToPage!);
+
+      catService.getCategoriesCollectionFromFirebase().then((value) {
+        Utils.mainAppNav.currentState!.pushNamed(this.goToPage!);
+      });
     });
     return Scaffold(
       body: Container(

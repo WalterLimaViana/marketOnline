@@ -6,6 +6,7 @@ import 'package:marketonline/main.dart';
 import 'package:marketonline/models/category.dart';
 import 'package:marketonline/pages/selected_category_page.dart';
 import 'package:marketonline/services/categoryselectionservice.dart';
+import 'package:marketonline/services/categoryservice.dart';
 import 'package:marketonline/widgets/categorybottombar.dart';
 import 'package:marketonline/widgets/categorycard.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
@@ -14,12 +15,15 @@ import 'package:marketonline/widgets/sidemenubar.dart';
 import 'package:provider/provider.dart';
 
 class CategoryListPage extends StatelessWidget {
-  List<Category> categories = Utils.getMockedCategories();
+  List<Category> categories = [];
 
   @override
   Widget build(BuildContext context) {
     CategorySelectionService catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
+    CategoryService catService =
+        Provider.of<CategoryService>(context, listen: false);
+    categories = catService.getCategories();
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 10),

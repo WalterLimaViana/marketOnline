@@ -26,4 +26,26 @@ class SubCategory extends Category {
     Color? color,
     String? imgName,
   }) : super(name: name, icon: icon, color: color, imgName: imgName);
+
+  factory SubCategory.fromJson(Map<String, dynamic> json) {
+    return SubCategory(
+        amount: 0,
+        unit: WeightUnits.Kg,
+        name: json['name'],
+        imgName: json['imgName'],
+        color: Color(int.parse('0xFF' + json['color'])),
+        icon: json['icon'],
+        price: double.parse(json['price']),
+        parts: CategoryPart.fromJsonArray(json['parts']));
+  }
+
+  static List<SubCategory> fromJsonArray(List<dynamic> jsonArray) {
+    List<SubCategory> subCategoriesFromJson = [];
+
+    jsonArray.forEach((jsonData) {
+      subCategoriesFromJson.add(SubCategory.fromJson(jsonData));
+    });
+
+    return subCategoriesFromJson;
+  }
 }

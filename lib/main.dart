@@ -8,6 +8,7 @@ import 'package:marketonline/pages/selected_category_page.dart';
 import 'package:marketonline/pages/welcome_page.dart';
 import 'package:marketonline/services/cartservices.dart';
 import 'package:marketonline/services/categoryselectionservice.dart';
+import 'package:marketonline/services/categoryservice.dart';
 import 'package:marketonline/services/loginservice.dart';
 import 'package:marketonline/splash_page.dart';
 
@@ -19,7 +20,8 @@ void main() {
       providers: [
         Provider(create: (_) => LoginService()),
         ChangeNotifierProvider(create: (_) => CategorySelectionService()),
-        Provider(create: (_) => CartService())
+        ChangeNotifierProvider(create: (_) => CartService()),
+        Provider(create: (_) => CategoryService())
       ],
       child: MaterialApp(
         navigatorKey: Utils.mainAppNav,
