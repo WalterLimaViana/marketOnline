@@ -25,11 +25,11 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
   Widget build(BuildContext context) {
     CategorySelectionService catSelection =
         Provider.of<CategorySelectionService>(context);
-    SubCategory? subCategory = catSelection.selectedSubCategory;
+    SubCategory subCategory = catSelection.selectedSubCategory!;
 
-    widget.themeColor = subCategory!.themeColor;
-    widget.price = subCategory.price;
-    widget.unit = subCategory.unit;
+    // widget.themeColor = subCategory!.themeColor;
+    // widget.price = subCategory.price;
+    // widget.unit = subCategory.unit;
 
     return Column(
       children: [
@@ -67,8 +67,8 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
                     child: Icon(Icons.add_circle_outline,
                         size: 50,
                         color: catSelection.subCategoryAmount < MAX_VALUE
-                            ? widget.themeColor
-                            : widget.themeColor!.withOpacity(0.2)),
+                            ? subCategory.color
+                            : subCategory.color!.withOpacity(0.2)),
                   ),
                   Expanded(
                       child: Padding(
@@ -98,8 +98,8 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
                     child: Icon(Icons.remove_circle_outline,
                         size: 50,
                         color: catSelection.subCategoryAmount > MIN_VALUE
-                            ? widget.themeColor
-                            : widget.themeColor!.withOpacity(0.2)),
+                            ? subCategory.color
+                            : subCategory.color!.withOpacity(0.2)),
                   ),
                 ])),
         Padding(

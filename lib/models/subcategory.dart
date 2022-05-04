@@ -10,7 +10,6 @@ class SubCategory extends Category {
   double price;
   WeightUnits unit;
   int amount;
-  Color? themeColor;
 
   double getTotalPrice() {
     return this.amount * this.price;

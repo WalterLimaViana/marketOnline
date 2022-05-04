@@ -26,7 +26,7 @@ class DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     CategorySelectionService catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    widget.subCategory = catSelection.selectedSubCategory!;
+    widget.subCategory = catSelection.selectedSubCategory;
     CartService cartService = Provider.of<CartService>(context, listen: false);
 
     return Scaffold(

@@ -15,7 +15,7 @@ import 'package:marketonline/widgets/sidemenubar.dart';
 import 'package:provider/provider.dart';
 
 class CategoryListPage extends StatelessWidget {
-  List<Category> categories = [];
+  // List<Category> categories = [];
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CategoryListPage extends StatelessWidget {
         Provider.of<CategorySelectionService>(context, listen: false);
     CategoryService catService =
         Provider.of<CategoryService>(context, listen: false);
-    categories = catService.getCategories();
+    List<Category> categories = catService.getCategories();
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -37,7 +37,7 @@ class CategoryListPage extends StatelessWidget {
             return CategoryCard(
                 category: categories[index],
                 onCardClick: () {
-                  catSelection.selectedCategory = this.categories[index];
+                  catSelection.selectedCategory = categories[index];
                   Utils.mainAppNav.currentState!
                       .pushNamed('/selectedcategorypage');
                 });

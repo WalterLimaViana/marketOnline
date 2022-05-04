@@ -9,7 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
 class SplashPage extends StatelessWidget {
-  int duration = 0;
+  int? duration = 0;
   String? goToPage;
 
   SplashPage({required this.goToPage, required this.duration});
@@ -18,7 +18,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     CategoryService catService =
         Provider.of<CategoryService>(context, listen: false);
-    Future.delayed(Duration(seconds: this.duration), () async {
+    Future.delayed(Duration(seconds: this.duration!), () async {
       FirebaseApp app = await Firebase.initializeApp();
 
       catService.getCategoriesCollectionFromFirebase().then((value) {
