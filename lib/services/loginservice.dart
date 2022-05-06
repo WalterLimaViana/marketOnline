@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:marketonline/models/loginusermodel.dart';
 
-class LoginService {
+class LoginService extends ChangeNotifier {
   LoginUserModel? _userModel;
 
   LoginUserModel? get loggedInUserModel => _userModel;
@@ -29,18 +30,20 @@ class LoginService {
         await FirebaseAuth.instance.signInWithCredential(credential);
     if (userCreds != null) {
       _userModel = LoginUserModel(
-        displayName: userCreds.user!.displayName,
-        photoUrl: userCreds.user!.photoURL,
-        email: userCreds.user!.email,
-      );
+          displayName: userCreds.user!.displayName,
+          photoUrl: userCreds.user!.photoURL,
+          email: userCreds.user!.email,
+          uid: userCreds.user!.uid);
     }
     return true;
   }
 
-  void signOut() async {
+  Future<void> signOut() async {
     await GoogleSignIn().signOut();
     _userModel = null;
   }
 
-  signInWithGoogle() {}
+  bool isUserLoggedIn() {
+    return _userModel != null;
+  }
 }

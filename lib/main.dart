@@ -18,7 +18,7 @@ void main() {
   // Provider.debugCheckInvalidValueType = null;
   runApp(MultiProvider(
       providers: [
-        Provider(create: (_) => LoginService()),
+        ChangeNotifierProvider(create: (_) => LoginService()),
         ChangeNotifierProvider(create: (_) => CategorySelectionService()),
         ChangeNotifierProvider(create: (_) => CartService()),
         Provider(create: (_) => CategoryService())
