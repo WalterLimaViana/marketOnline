@@ -108,7 +108,7 @@ class Utils {
   //         color: AppColors.SEEDS,
   //         name: "Enlatados",
   //         imgName: 'enlatados',
-  //         icon: IconFontHelper.ENLATADOS,
+  // icon: IconFontHelper.ENLATADOS,
   //         subCategories: []),
   //     Category(
   //         color: AppColors.GREEN,

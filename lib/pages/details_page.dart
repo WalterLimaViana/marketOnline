@@ -8,6 +8,7 @@ import 'package:marketonline/pages/category_list_page.dart';
 import 'package:marketonline/pages/mappage.dart';
 import 'package:marketonline/services/cartservices.dart';
 import 'package:marketonline/services/categoryselectionservice.dart';
+import 'package:marketonline/services/loginservice.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/categorypartlist.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
@@ -93,34 +94,41 @@ class DetailsPageState extends State<DetailsPage> {
                           ],
                         ),
                       )),
-                  Positioned(
-                      right: 20,
-                      top: 100,
-                      child: Container(
-                          padding: EdgeInsets.only(
-                              top: 5, left: 15, right: 15, bottom: 8),
-                          decoration: BoxDecoration(
-                              color: AppColors.SECUNDARY_COLOR,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
-                                    blurRadius: 20,
-                                    offset: Offset.zero)
-                              ]),
-                          child: Row(
-                            children: [
-                              Consumer<CartService>(
-                                builder: (context, cart, child) {
-                                  return Text('${cart.items.length}',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15));
-                                },
-                              ),
-                              Icon(Icons.shopping_cart,
-                                  color: Colors.white, size: 15)
-                            ],
-                          ))),
+                  Consumer<LoginService>(
+                      builder: (context, loginService, child) {
+                    if (loginService.isUserLoggedIn()) {
+                      return Positioned(
+                          right: 20,
+                          top: 100,
+                          child: Container(
+                              padding: EdgeInsets.only(
+                                  top: 5, left: 15, right: 15, bottom: 8),
+                              decoration: BoxDecoration(
+                                  color: AppColors.SECUNDARY_COLOR,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black.withOpacity(0.5),
+                                        blurRadius: 20,
+                                        offset: Offset.zero)
+                                  ]),
+                              child: Row(
+                                children: [
+                                  Consumer<CartService>(
+                                    builder: (context, cart, child) {
+                                      return Text('${cart.items.length}',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15));
+                                    },
+                                  ),
+                                  Icon(Icons.shopping_cart,
+                                      color: Colors.white, size: 15)
+                                ],
+                              )));
+                    }
+                    return Container();
+                  }),
                   MainAppBar(
                     themeColor: Colors.white,
                   )
