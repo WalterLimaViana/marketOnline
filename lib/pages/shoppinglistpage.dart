@@ -36,7 +36,7 @@ class ShoppingListPage extends StatelessWidget {
                     child: Material(
                       child: InkWell(
                         onTap: () {
-                          // cartService.removeAll();
+                          cartService.removeAll(context);
                         },
                         child: Container(
                             padding: EdgeInsets.only(
@@ -122,7 +122,7 @@ class ShoppingListPage extends StatelessWidget {
                           ),
                           IconButton(
                               onPressed: () {
-                                cart.remove(item);
+                                cart.remove(context, item);
                               },
                               icon: Icon(Icons.highlight_off,
                                   size: 30, color: AppColors.SECUNDARY_COLOR))

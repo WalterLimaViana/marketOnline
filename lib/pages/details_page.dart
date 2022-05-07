@@ -145,8 +145,8 @@ class DetailsPageState extends State<DetailsPage> {
                           label: 'Adicionar ao Carrinho',
                           icon: Icon(Icons.shopping_cart, color: Colors.white),
                           onClick: () {
-                            cartService
-                                .add(CartItem(category: widget.subCategory));
+                            cartService.add(context,
+                                CartItem(category: widget.subCategory));
                           },
                         );
                       } else {

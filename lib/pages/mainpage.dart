@@ -15,7 +15,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartService cartService = Provider.of<CartService>(context, listen: false);
-    // cartService.loadCartItemsFromFirebase(context);
+    cartService.loadCartItemsFromFirebase(context);
     return Scaffold(
         drawer: Drawer(child: SideMenuBar()),
         appBar: MainAppBar(),

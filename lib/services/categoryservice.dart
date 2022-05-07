@@ -34,5 +34,5 @@ class CategoryService {
   //   categoriesData.forEach((catData) {
   //     _categories.add(Category.fromJson(catData));
   //   });
-  // }
+  //}
 }

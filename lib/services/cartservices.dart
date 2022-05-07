@@ -16,9 +16,22 @@ class CartService extends ChangeNotifier {
 
   UnmodifiableListView<CartItem> get items => UnmodifiableListView(_items);
 
-  void add(CartItem item) {
+  void add(BuildContext context, CartItem item) {
     items.add(item);
-    notifyListeners();
+
+    LoginService loginService =
+        Provider.of<LoginService>(context, listen: false);
+    Map<String, int> cartMap = Map();
+    _items.forEach((CartItem item) {
+      cartMap[item.category!.imgName!] = (item.category as SubCategory).amount;
+    });
+
+    FirebaseFirestore.instance
+        .collection('shoppers')
+        .doc(loginService.loggedInUserModel!.uid)
+        .set({'cartItems': cartMap}).then((value) {
+      notifyListeners();
+    });
   }
 
   bool isSubCategoryAddedToCart(SubCategory cat) {
@@ -37,14 +50,36 @@ class CartService extends ChangeNotifier {
     return mainTotal;
   }
 
-  void remove(CartItem item) {
-    _items.remove(item);
-    notifyListeners();
+  void remove(BuildContext context, CartItem item) {
+    LoginService loginService =
+        Provider.of<LoginService>(context, listen: false);
+    SubCategory subCat = (item.category as SubCategory);
+    FirebaseFirestore.instance
+        .collection('shoppers')
+        .doc(loginService.loggedInUserModel!.uid)
+        .update({'cartItems.${subCat.imgName}': FieldValue.delete()}).then(
+            (value) {
+      (item.category as SubCategory).amount = 0;
+
+      _items.remove(item);
+      notifyListeners();
+    });
   }
 
-  void removeAll(CartItem item) {
-    _items.clear();
-    notifyListeners();
+  void removeAll(BuildContext context) {
+    LoginService loginService =
+        Provider.of<LoginService>(context, listen: false);
+
+    FirebaseFirestore.instance
+        .collection('shoppers')
+        .doc(loginService.loggedInUserModel!.uid)
+        .update({'cartItems': FieldValue.delete()}).then((value) {
+      _items.forEach((CartItem item) {
+        (item.category as SubCategory).amount = 0;
+      });
+      _items.clear();
+      notifyListeners();
+    });
   }
 
   SubCategory getCategoryFromCart(SubCategory cat) {
