@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketonline/helpers/appcolors.dart';
+import 'package:marketonline/helpers/iconhelper.dart';
 import 'package:marketonline/helpers/utils.dart';
 import 'package:marketonline/models/cartitem.dart';
 import 'package:marketonline/models/categorypart.dart';
@@ -11,6 +12,7 @@ import 'package:marketonline/services/categoryselectionservice.dart';
 import 'package:marketonline/services/loginservice.dart';
 import 'package:marketonline/widgets/categoryicon.dart';
 import 'package:marketonline/widgets/categorypartlist.dart';
+import 'package:marketonline/widgets/iconfont.dart';
 import 'package:marketonline/widgets/main_appbar.dart';
 import 'package:marketonline/widgets/themebutton.dart';
 import 'package:marketonline/widgets/unitpricewidget.dart';
@@ -140,55 +142,105 @@ class DetailsPageState extends State<DetailsPage> {
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Visibility(
-                    visible: widget.subCategory!.parts.length > 0,
-                    child: CategoryPartsList(subCategory: widget.subCategory),
-                  ),
-                  UnitPriceWidget(),
-                  Consumer<CartService>(
-                    builder: (context, cart, child) {
-                      Widget renderedButton;
-                      if (!cart.isSubCategoryAddedToCart(widget.subCategory!)) {
-                        renderedButton = ThemeButton(
-                          label: 'Adicionar ao Carrinho',
-                          icon: Icon(Icons.shopping_cart, color: Colors.white),
-                          onClick: () {
-                            cartService.add(context,
-                                CartItem(category: widget.subCategory));
-                          },
-                        );
-                      } else {
-                        renderedButton = Container(
-                          padding: EdgeInsets.all(26),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Adicionar ao Carrinho',
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.SECUNDARY_COLOR),
-                              ),
-                              SizedBox(width: 10),
-                              Icon(Icons.check_circle,
-                                  size: 30, color: AppColors.SECUNDARY_COLOR)
-                            ],
+                  Consumer<LoginService>(
+                      builder: (context, loginService, child) {
+                    Widget userActionsWidget;
+
+                    if (loginService.isUserLoggedIn()) {
+                      userActionsWidget = Column(
+                        children: [
+                          Visibility(
+                            visible: widget.subCategory!.parts.length > 0,
+                            child: CategoryPartsList(
+                                subCategory: widget.subCategory),
                           ),
-                        );
-                      }
-                      return renderedButton;
-                    },
-                  ),
-                  ThemeButton(
-                    label: 'Localização do Produto',
-                    icon: Icon(Icons.location_pin, color: Colors.white),
-                    onClick: () {
-                      Utils.mainAppNav.currentState!.pushNamed('/mappage');
-                    },
-                    color: AppColors.DARK_BLUE,
-                    highlight: AppColors.DARKER_BLUE,
-                  )
+                          UnitPriceWidget(),
+                          Consumer<CartService>(
+                            builder: (context, cart, child) {
+                              Widget renderedButton;
+                              if (!cart.isSubCategoryAddedToCart(
+                                  widget.subCategory!)) {
+                                renderedButton = ThemeButton(
+                                  label: 'Adicionar ao Carrinho',
+                                  icon: Icon(Icons.shopping_cart,
+                                      color: Colors.white),
+                                  onClick: () {
+                                    cartService.add(context,
+                                        CartItem(category: widget.subCategory));
+                                  },
+                                );
+                              } else {
+                                renderedButton = Container(
+                                  padding: EdgeInsets.all(26),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Adicionar ao Carrinho',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.SECUNDARY_COLOR),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Icon(Icons.check_circle,
+                                          size: 30,
+                                          color: AppColors.SECUNDARY_COLOR)
+                                    ],
+                                  ),
+                                );
+                              }
+                              return renderedButton;
+                            },
+                          ),
+                          ThemeButton(
+                            label: 'Localização do Produto',
+                            icon: Icon(Icons.location_pin, color: Colors.white),
+                            onClick: () {
+                              Utils.mainAppNav.currentState!
+                                  .pushNamed('/mappage');
+                            },
+                            color: AppColors.DARK_BLUE,
+                            highlight: AppColors.DARKER_BLUE,
+                          )
+                        ],
+                      );
+                    } else {
+                      userActionsWidget = Container(
+                        padding: EdgeInsets.only(top: 50),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              IconFont(
+                                color: Colors.grey.withOpacity(0.5),
+                                iconName: IconFontHelper.CESTA,
+                                size: 60,
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                  'Deve estar logado \n para poder adicionar itens ao carrinho.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.grey)),
+                              ThemeButton(
+                                  label: 'Fazer Login',
+                                  onClick: () async {
+                                    bool success =
+                                        await loginService.signWithGoogle();
+
+                                    if (success) {
+                                      CartService cartService =
+                                          Provider.of<CartService>(context,
+                                              listen: false);
+                                      cartService
+                                          .loadCartItemsFromFirebase(context);
+                                    }
+                                  })
+                            ]),
+                      );
+                    }
+
+                    return userActionsWidget;
+                  })
                 ],
               )),
             ),
