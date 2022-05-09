@@ -46,10 +46,28 @@ class CategorySelectionService extends ChangeNotifier {
     }
   }
 
-  void decrementSubCategoryAmount() {
+  void decrementSubCategoryAmount(BuildContext context) {
     if (_selectedSubCategory != null) {
-      _selectedSubCategory!.amount--;
-      notifyListeners();
+      LoginService loginService =
+          Provider.of<LoginService>(context, listen: false);
+      CartService cartService =
+          Provider.of<CartService>(context, listen: false);
+
+      if (cartService.isSubCategoryAddedToCart(_selectedSubCategory!)) {
+        FirebaseFirestore.instance
+            .collection('shoppers')
+            .doc(loginService.loggedInUserModel!.uid)
+            .update({
+          'cartItems.${_selectedSubCategory!.imgName!}':
+              FieldValue.increment(-1)
+        }).then((value) {
+          _selectedSubCategory!.amount--;
+          notifyListeners();
+        });
+      } else {
+        _selectedSubCategory!.amount--;
+        notifyListeners();
+      }
     }
   }
 

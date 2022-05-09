@@ -92,7 +92,7 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
                   GestureDetector(
                     onTap: catSelection.subCategoryAmount < MIN_VALUE
                         ? () {
-                            catSelection.decrementSubCategoryAmount();
+                            catSelection.decrementSubCategoryAmount(context);
                           }
                         : null,
                     child: Icon(Icons.remove_circle_outline,
