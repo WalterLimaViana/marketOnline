@@ -61,7 +61,7 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
                   GestureDetector(
                     onTap: catSelection.subCategoryAmount < MAX_VALUE
                         ? () {
-                            catSelection.incrementSubCategoryAmount();
+                            catSelection.incrementSubCategoryAmount(context);
                           }
                         : null,
                     child: Icon(Icons.add_circle_outline,
